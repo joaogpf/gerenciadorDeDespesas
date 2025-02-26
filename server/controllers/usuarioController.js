@@ -1,3 +1,4 @@
+const { where } = require("sequelize")
 const UsuarioModel = require("../models/despesa")
 
 const getUsuarios = async (req, res) => {
@@ -15,7 +16,6 @@ const createUsuario = async (req, res) => {
     if (!email || !senha) {
         return res.status(400).json({ error: "Os campos 'email' e 'senha' são obrigatórios." });
     }
-    
     try {
           
         const newUsuario = await UsuarioModel.Usuario.create({ email, senha })

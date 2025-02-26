@@ -19,6 +19,19 @@ const createTransacao = async (req, res) => {
     }
 }
 
+const deleteTransacao = async (req, res) => {
+    const { id_transacao } = req.params
+    try {
+        const transacaoExcluida = await TransacoesModel.Transacoes.destroy( {where: {
+            id_transacao: id_transacao
+        }
+    })
+        res.status(201).json(transacaoExcluida)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
 const getTransacoesById = async (req, res) => {
     console.log(req.params)
     try {
@@ -38,5 +51,6 @@ const getTransacoesById = async (req, res) => {
 module.exports = {
     getTransacoes,
     createTransacao,
-    getTransacoesById
+    getTransacoesById,
+    deleteTransacao
 }
