@@ -10,6 +10,20 @@ const getUsuarios = async (req, res) => {
     }
 }
 
+const verifyUsuario = async (req, res) => {
+    const {email, senha} = req.params
+    try {
+        const usuario = await UsuarioModel.Usuario.findAll({where: {
+            email: email,
+            senha: senha
+        }})
+        res.status(200).json(usuario)
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+
+}
+
 const createUsuario = async (req, res) => {
     const { email, senha } = req.body
 
@@ -27,5 +41,6 @@ const createUsuario = async (req, res) => {
 
 module.exports = {
     createUsuario,
-    getUsuarios 
+    getUsuarios,
+    verifyUsuario
 }

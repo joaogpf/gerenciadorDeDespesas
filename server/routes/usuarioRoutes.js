@@ -1,9 +1,9 @@
 const express = require('express')
-const { getUsuarios, createUsuario } = require("../controllers/usuarioController")
+const { getUsuarios, createUsuario, verifyUsuario } = require("../controllers/usuarioController")
 
 const routerUsuario = express.Router()
 
-routerUsuario.get("/", getUsuarios)
+routerUsuario.get("/", verifyUsuario) //login de usuário
 
-routerUsuario.post("/", createUsuario)
+routerUsuario.post("/", createUsuario) //cadastro de usuário
 module.exports = routerUsuario
