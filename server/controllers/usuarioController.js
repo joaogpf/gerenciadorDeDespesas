@@ -11,13 +11,25 @@ const getUsuarios = async (req, res) => {
 }
 
 const verifyUsuario = async (req, res) => {
-    const {email, senha} = req.params
+    const { email, senha } = req.body
+
+    if (!email || !senha) {
+        return res.status(400).json({ error: "Os campos 'email' e 'senha' são obrigatórios." });
+    }
     try {
-        const usuario = await UsuarioModel.Usuario.findAll({where: {
+        const usuario = await UsuarioModel.Usuario.findOne( {where: {
+            
             email: email,
             senha: senha
-        }})
-        res.status(200).json(usuario)
+        }
+    })
+        res.status(201).json({
+            message: "usuário logado com sucesso",
+            token: usuario.toJSON().id_usuario
+        })
+        console.log("Usuário logado com sucesso!")
+        c
+       
     } catch (error) {
         res.status(500).json({error: error.message})
     }
@@ -34,8 +46,9 @@ const createUsuario = async (req, res) => {
           
         const newUsuario = await UsuarioModel.Usuario.create({ email, senha })
         res.status(201).json(newUsuario)
+        console.log("Usuário cadastrado com sucesso!")
     } catch (error) {
-        res.status(500).json({ error: error.message})
+        res.status(500).json({ error: error.message })
     }
 }
 

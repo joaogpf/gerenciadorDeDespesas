@@ -20,7 +20,7 @@ const createTransacao = async (req, res) => {
 }
 
 const editTransacao = async (req, res) => {
-    const {id_transacao } = req.params
+    const { id_transacao } = req.params
     try {
         const { nome_transacao, valor_transacao, categoria_transacao, data_transacao, metodo_transacao} = req.body
         const transacaoEditada = await TransacoesModel.Transacoes.update(

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { React } from 'react'
-import axios, { Axios } from 'axios'
-
+import axios from 'axios'
 
 const Transacao = () => {
 
@@ -15,6 +14,7 @@ const Transacao = () => {
     const handleTransacao = async (e) => {
         e.preventDefault()
         try{
+            
             const response = await axios.post('api',{
                 nome,
                 valor,
@@ -25,20 +25,28 @@ const Transacao = () => {
         }
 
         catch(error){
-            setError("Erro ao fazer login")
+            setError("Erro ao adicionar transacao")
             console.error(error)
         }
     }
     
     return (
-        <form onSubmit="handleTransacao">
+        <form onSubmit={handleTransacao}>
 
             <div>
-                <input type="text" value={nome} placeholder="Nome" onChange={(e) => setEmail(e.target.value)} required/>
-                <input type="number" value={valor} placeholder="Nome" onChange={(e) => setEmail(e.target.value)} required/>
-                <input type="text" value={categoria} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
+                <input type="text" value={nome} placeholder="Nome" onChange={(e) => setNome(e.target.value)} required/>
+                <input type="number" value={valor} placeholder="Valor" onChange={(e) => setValor(e.target.value)} required/>
+                <input type="text" value={categoria} placeholder="Categoria" onChange={(e) => setCategoria(e.target.value)} required/>
+                <input type="date" value={data} placeholder="Data" onChange={(e) => setData(e.target.value)} required/>
+                <select value={categoria} placeholder="Metodo" onChange={(e) => setMetodo(e.target.value)} required>
+                    <option value="">Selecione...</option>
+                    <option value="credito">Crédito</option>
+                    <option value="debito">Débito</option>
+                    <option value="pix">Pix</option>
+                    <option value="especie">Espécie</option> 
+                </select>
                 {error && <p>error</p>}
-                <button type="submite">Entrar</button>
+                <button type="submit">Adicionar</button>
             </div>
 
         </form>

@@ -3,7 +3,7 @@ const { getUsuarios, createUsuario, verifyUsuario } = require("../controllers/us
 
 const routerUsuario = express.Router()
 
-routerUsuario.get("/", verifyUsuario) //login de usuário
+routerUsuario.post("/login", verifyUsuario) //login de usuário
 
 routerUsuario.post("/", createUsuario) //cadastro de usuário
 module.exports = routerUsuario

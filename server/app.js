@@ -2,11 +2,13 @@ const express = require('express')
 const sequelize = require('./config/database')
 const routerUsuario = require("./routes/usuarioRoutes")
 const routerTransacao = require("./routes/transacaoRoutes")
+
 const cors = require('cors')
 
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 app.get('/', (req, res) => {
