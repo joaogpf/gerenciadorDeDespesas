@@ -22,7 +22,7 @@ const Dashboard = () => {
         <div>Você está logado!</div>
         <h2>Lista de Transações</h2>
         {transacoes.map((transacao) => (
-            <TransacaoContainer key={transacao.id_transacao} nome={transacao.nome_transacao} 
+            <TransacaoContainer key={transacao.id_transacao} id={transacao.id_transacao} nome={transacao.nome_transacao} 
             valor={transacao.valor_transacao} categoria={transacao.categoria_transacao} metodo={transacao.metodo_transacao}/>
         ))}
         
