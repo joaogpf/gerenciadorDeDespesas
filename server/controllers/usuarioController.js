@@ -23,15 +23,14 @@ const verifyUsuario = async (req, res) => {
             senha: senha
         }
     })
-        res.status(201).json({
+        return res.status(201).json({
             message: "usuário logado com sucesso",
             token: usuario.toJSON().id_usuario
         })
-        console.log("Usuário logado com sucesso!")
-        c
+  
        
     } catch (error) {
-        res.status(500).json({error: error.message})
+        return res.status(500).json({error: error.message})
     }
 
 }
@@ -45,10 +44,10 @@ const createUsuario = async (req, res) => {
     try {
           
         const newUsuario = await UsuarioModel.Usuario.create({ email, senha })
-        res.status(201).json(newUsuario)
+        return res.status(201).json(newUsuario)
         console.log("Usuário cadastrado com sucesso!")
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 

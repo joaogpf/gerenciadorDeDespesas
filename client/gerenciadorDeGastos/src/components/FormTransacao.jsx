@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { React } from 'react'
 import axios from 'axios'
 
-const Transacao = () => {
+const FormTransacao = () => {
 
     const [nome, setNome] = useState('')
     const [valor, setValor] = useState('')
@@ -53,4 +53,4 @@ const Transacao = () => {
     )  
 }
 
-export default Transacao
+export default FormTransacao

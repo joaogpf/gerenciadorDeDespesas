@@ -3,9 +3,9 @@ const TransacoesModel = require("../models/despesa");
 const getTransacoes = async (req, res) => {
     try {
         const transacoes = await TransacoesModel.Transacoes.findAll()
-        res.status(200).json(transacoes)
+        return res.status(200).json(transacoes)
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 
@@ -13,9 +13,9 @@ const createTransacao = async (req, res) => {
     try {
         const { nome_transacao, valor_transacao, categoria_transacao, data_transacao, metodo_transacao, usuario } = req.body
         const newTransacao = await TransacoesModel.Transacoes.create( { nome_transacao, valor_transacao, categoria_transacao, data_transacao, metodo_transacao, usuario } )
-        res.status(201).json(newTransacao)
+        return res.status(201).json(newTransacao)
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 
@@ -30,9 +30,9 @@ const editTransacao = async (req, res) => {
                 data_transacao: data_transacao,
                 metodo_transacao: metodo_transacao
             }, { where: {id_transacao: id_transacao}})
-            res.status(201).json(transacaoEditada)
+            return res.status(201).json(transacaoEditada)
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 
@@ -43,9 +43,9 @@ const deleteTransacao = async (req, res) => {
             id_transacao: id_transacao
         }
     })
-        res.status(201).json(transacaoExcluida)
+        return res.status(201).json(transacaoExcluida)
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 
@@ -58,10 +58,10 @@ const getTransacoesById = async (req, res) => {
             where: {
                 usuario: usuario
             }})
-        res.status(201).json(transacoesUsuario)
+        return res.status(201).json(transacoesUsuario)
         
     } catch (error) {
-        res.status(500).json({ error: error.message})
+        return res.status(500).json({ error: error.message})
     }
 }
 
