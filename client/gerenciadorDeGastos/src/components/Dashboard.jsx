@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Dashboard = () => {
     const [transacoes, setTransacoes] = useState([])
-    //const [onEdit, setOnEdit] = useState(null)
+    const [onEdit, setOnEdit] = useState(null)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/transacao/${localStorage.getItem('token')}`)

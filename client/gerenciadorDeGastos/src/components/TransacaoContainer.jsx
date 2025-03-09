@@ -2,33 +2,22 @@ import React from "react";
 import axios from 'axios'
 
 
-const TransacaoContainer = ({id, nome, valor, metodo, data, categoria }) => {
+const TransacaoContainer = ({transacoes, setTransacoes, setOnEdit}) => {
+
+    const handleEdit = (item) => {
+        setOnEdit(item)
+    }
     
 
     const apagarTransferência = async ({id}) => {
-        try {
-            const response = await axios.delete(`http://localhost:3000/transacao/${id}`)
-        } catch(error) {
-            console.error(error)
+      
+        await axios.delete(`http://localhost:3000/transacao/${id}`)
+        .then({ data }) => {
+            const newArray = transacoes.filter(transacao) => transacao.id_transacao !== id
+            setTransacoes(newArray)
         }
     }
 
-    const editarTransferencia = async ({nome, valor, categoria, data, metodo}) => {
-        try {
-            const response = await axios.put(`http://localhost:3000/transacao/${id}`, 
-                {
-                    nome,
-                    valor,
-                    categoria,
-                    data,
-                    metodo
-            }
-
-            )
-        } catch(error){
-            console.error(error)
-        }
-    } 
     return (
         <div>
             <div className="nomeTransacao"> {nome} </div>
