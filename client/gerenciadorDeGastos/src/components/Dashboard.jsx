@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react'
 import TransacaoContainer from "./TransacaoContainer";
 import FormTransacao from "./FormTransacao";
 import axios from "axios";
-import { Form } from "react-router-dom";
+
 
 
 const Dashboard = () => {
     const [transacoes, setTransacoes] = useState([])
+    //const [onEdit, setOnEdit] = useState(null)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/transacao/${localStorage.getItem('token')}`)
@@ -17,7 +18,7 @@ const Dashboard = () => {
             .catch(error => {
                 console.error('Erro ao obter transações', error)
             })
-    }, [transacoes])
+    }, [setTransacoes])
 
     return (
     <div>

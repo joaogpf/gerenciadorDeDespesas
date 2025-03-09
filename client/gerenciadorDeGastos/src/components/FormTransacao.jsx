@@ -1,46 +1,62 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { React } from 'react'
 import axios from 'axios'
 
-const FormTransacao = () => {
+const FormTransacao = ({ getTransacoes, onEdit, setOnEdit}) => {
 
-    const [nome, setNome] = useState('')
-    const [valor, setValor] = useState(0)
-    const [categoria, setCategoria] = useState('')
-    const [data, setData] = useState('')
-    const [metodo, setMetodo] = useState('')
-    const [error, setError] = useState('')
+    const ref = useRef()
+
+    useEffect(() => {
+        if(onEdit) {
+            const transacao = ref.current
+
+            transacao.nome_transacao.value = onEdit.nome_transacao
+            transacao.valor_transacao.value = onEdit.valor_transacao
+            transacao.categoria_transacao.value = onEdit.categoria_transacao
+            transacao.data_transacao.value = onEdit.data_transacao
+            transacao.metodo_transacao.value = onEdit.metodo_transacao
+            transacao.usuario.value = onEdit.usuario
+        }
+    }, [onEdit])
 
     const handleTransacao = async (e) => {
         usuario = localStorage.getItem('token')
         e.preventDefault()
-        try{
+        const transacao = ref.current
+        
+        if(onEdit) {
             
-            const response = await axios.post('http://localhost:3000/transacao',{
-                nome,
-                valor,
-                categoria,
-                data,
-                metodo,
-                usuario
+        await axios.put('http://localhost:3000/transacao/' + onEdit.id,{
+                nome_transacao: transacao.nome_transacao.value,
+                valor_transacao: transacao.valor_transacao.value,
+                categoria_transacao: transacao.categoria_transacao.value,
+                data_transacao: transacao.data_transacao.value,
+                metodo_transacao: transacao.metodo_transacao.value,
+                usuario: transacao.usuario.value
         })
-        console.log(response)
+            
+        } else {
+            await axios.post('http://localhost:3000/transacao/', {
+                nome_transacao: transacao.nome_transacao.value,
+                valor_transacao: transacao.valor_transacao.value,
+                categoria_transacao: transacao.categoria_transacao.value,
+                data_transacao: transacao.data_transacao.value,
+                metodo_transacao: transacao.metodo_transacao.value,
+                usuario: transacao.usuario.value
+        })
         }
-
-        catch(error){
-            setError("Erro ao adicionar transacao")
-            console.error(error)
-        }
+        setOnEdit(null)
+        getTransacoes()
     }
     
     return (
-        <form onSubmit={handleTransacao}>
+        <form ref={ref} onSubmit={handleTransacao}>
             <div>
-                <input type="text" value={nome} placeholder="Nome" onChange={(e) => setNome(e.target.value)} required/>
-                <input type="number" value={valor} placeholder="Valor" onChange={(e) => setValor(e.target.value)} required/>
-                <input type="text" value={categoria} placeholder="Categoria" onChange={(e) => setCategoria(e.target.value)} required/>
-                <input type="date" value={data} placeholder="Data" onChange={(e) => setData(e.target.value)} required/>
-                <select value={metodo} placeholder="Metodo" onChange={(e) => setMetodo(e.target.value)} required>
+                <input type="text" value={nome} placeholder="Nome" required/>
+                <input type="number" value={valor} placeholder="Valor"  required/>
+                <input type="text" value={categoria} placeholder="Categoria"  required/>
+                <input type="date" value={data} placeholder="Data" required/>
+                <select value={metodo} placeholder="Metodo"  required>
                     <option value="">Selecione...</option>
                     <option value="credito">Crédito</option>
                     <option value="debito">Débito</option>
