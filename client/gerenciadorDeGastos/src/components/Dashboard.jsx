@@ -26,7 +26,7 @@ const Dashboard = () => {
   
       try {
         if (editando) {
-          await axios.put(`${API_URL}/${formData.id}`, formData);
+          await axios.put(`${API_URL}/${formData.id_transacao}`, formData);
         } else {
           await axios.post(API_URL, formData);
         }
