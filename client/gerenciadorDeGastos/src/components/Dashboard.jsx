@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-
+import "./styles/Dashboard.css"
 import axios from "axios";
 
 
