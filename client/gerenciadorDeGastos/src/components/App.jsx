@@ -3,6 +3,7 @@ import Dashboard from "./Dashboard";
 import PageRegistro from "../pages/PageRegistro"
 import RotaProtegida from "./RotaProtegida";
 import PageLogin from "../pages/PageLogin";
+import Grafico from "./Grafico"
 import Header from "./Header";
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
                     <Route path="/dashboard" element={
                         <RotaProtegida>
                             <Dashboard/>
+                            <Grafico/>
                         </RotaProtegida>
                     }/>
             
