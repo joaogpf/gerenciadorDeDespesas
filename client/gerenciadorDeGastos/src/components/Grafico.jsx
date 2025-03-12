@@ -7,6 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const Grafico = () => {
     const [data, setData] = React.useState([])
+    const [dadosGrafico, setDadosGrafico] = React.useState()
  
     function somarPorCategoria(transacoes) {
         return transacoes.reduce((acc, transacao) => {

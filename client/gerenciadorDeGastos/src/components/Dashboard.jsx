@@ -29,7 +29,7 @@ const Dashboard = () => {
           await axios.post(API_URL, formData);
         }
         
-        setTransferencias(await (await axios.get(API_URL)).data);
+        setTransferencias(await (await axios.get(API_URL + formData.usuario)).data);
         setFormData({ id: null, nome_transacao: "", valor_transacao: "", categoria_transacao: "",
             data_transacao: "", metodo_transacao: "", usuario: localStorage.getItem('token') });
         setEditando(false);
