@@ -6,8 +6,8 @@ import axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const Grafico = () => {
-    const [data, setData] = React.useState([])
-    const [dadosGrafico, setDadosGrafico] = React.useState()
+    const [dataApi, setDataApi] = React.useState([])
+    const chartRef = React.useRef(null)
  
     function somarPorCategoria(transacoes) {
         return transacoes.reduce((acc, transacao) => {
@@ -22,19 +22,34 @@ const Grafico = () => {
         }, {});
       }
 
-    React.useEffect(() => {
-        axios.get(`http://localhost:3000/transacao/${localStorage.getItem('token')}`)
-        .then(response => setData(response.data))
-        .catch(error => console.error("Erro ao buscar transferências:", error));
-    }, []);
+    const carregarDados = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/transacao/${localStorage.getItem('token')}`)
+        setDataApi(response.data)
+    }  catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+    }
+  }
 
+    React.useEffect(() => {
+      carregarDados()
+      console.log("ijnadspia")
+    }, [dataApi])
+
+    React.useEffect(() => {
+      if(chartRef.current) {
+        chartRef.current.data.datasets[0].data = dataApi
+        chartRef.current.update()
+        console.log("oi")
+      }
+    }, [dataApi])
     
     const dados = {
         labels: ["Gastos Pessoais", "Lazer", "Investimentos", "Despesas Essenciais"],
         datasets: [
             {
                 label: "Valor Gasto",
-                data: [somarPorCategoria(data)["Gasto Pessoal"], somarPorCategoria(data)["Lazer"], somarPorCategoria(data)["Investimento"], somarPorCategoria(data)["Despesa Essencial"]],
+                data: [somarPorCategoria(dataApi)["Gasto Pessoal"], somarPorCategoria(dataApi)["Lazer"], somarPorCategoria(dataApi)["Investimento"], somarPorCategoria(dataApi)["Despesa Essencial"]],
                 backgroundColor: ["#FF6384", 
                 "#36A2EB",
                 "#FFCE56", 
