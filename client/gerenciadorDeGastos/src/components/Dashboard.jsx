@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import "./styles/Dashboard.css"
+import Grafico from "./Grafico"
 import axios from "axios";
 
 
@@ -57,68 +58,75 @@ const Dashboard = () => {
     return (
       <div className="container">
         <h2>{editando ? "Editar Transferência" : "Cadastrar Transferência"}</h2>
-        <form onSubmit={handleSubmit}>
-        <input 
-            type="text" 
-            placeholder="Nome" 
-            value={formData.nome_transacao} 
-            onChange={(e) => setFormData({ ...formData, nome_transacao: e.target.value })} 
-            required 
-          />
-          <input 
-            type="number" 
-            placeholder="Valor" 
-            value={formData.valor_transacao} 
-            onChange={(e) => setFormData({ ...formData, valor_transacao: e.target.value })} 
-            required 
-          />
-          <select value={formData.categoria_transacao} placeholder="categoria" 
-        onChange={(e) => setFormData({ ...formData, categoria_transacao: e.target.value })} required>
-                    <option value="">Selecione...</option>
-                    <option value="Lazer">Lazer</option>
-                    <option value="Investimento">Investimento</option>
-                    <option value="Despesa Essencial">Despesas Essenciais</option>
-                    <option value="Gasto Pessoal">Gastos Pessoais</option> 
-        </select>
-          <input 
-            type="date" 
-            placeholder="Data" 
-            value={formData.data_transacao} 
-            onChange={(e) => setFormData({ ...formData, data_transacao: e.target.value })} 
-            required 
-          />
-        <select value={formData.metodo_transacao} placeholder="Metodo" 
-        onChange={(e) => setFormData({ ...formData, metodo_transacao: e.target.value })} required>
-                    <option value="">Selecione...</option>
-                    <option value="Crédito">Crédito</option>
-                    <option value="Débito">Débito</option>
-                    <option value="Pix">Pix</option>
-                    <option value="Espécie">Espécie</option> 
-        </select>
-         
-          <button type="submit">{editando ? "Atualizar" : "Cadastrar"}</button>
-        </form>
+        <div className="formContainer">
+          <form onSubmit={handleSubmit} className="formulario">
+            <input 
+                type="text" 
+                placeholder="Nome" 
+                value={formData.nome_transacao} 
+                onChange={(e) => setFormData({ ...formData, nome_transacao: e.target.value })} 
+                required 
+              />
+            <input 
+              type="number" 
+              placeholder="Valor" 
+              value={formData.valor_transacao} 
+              onChange={(e) => setFormData({ ...formData, valor_transacao: e.target.value })} 
+              required 
+              />
+            <select value={formData.categoria_transacao} placeholder="categoria" 
+            onChange={(e) => setFormData({ ...formData, categoria_transacao: e.target.value })} required>
+                <option value="">Selecione...</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Investimento">Investimento</option>
+                <option value="Despesa Essencial">Despesas Essenciais</option>
+                <option value="Gasto Pessoal">Gastos Pessoais</option> 
+            </select>
+            <input 
+              type="date" 
+              placeholder="Data" 
+              value={formData.data_transacao} 
+              onChange={(e) => setFormData({ ...formData, data_transacao: e.target.value })} 
+              required 
+              />
+            <select value={formData.metodo_transacao} placeholder="Metodo" 
+            onChange={(e) => setFormData({ ...formData, metodo_transacao: e.target.value })} required>
+                <option value="">Selecione...</option>
+                <option value="Crédito">Crédito</option>
+                <option value="Débito">Débito</option>
+                <option value="Pix">Pix</option>
+                <option value="Espécie">Espécie</option> 
+            </select>
+            
+            <button type="submit">{editando ? "Atualizar" : "Cadastrar"}</button>
+          </form>
+        </div>
   
         <h2>Lista de Transferências</h2>
-        <div className="transferencias">
-          {transferencias.map((t) => (
-            <div key={t.id_transacao} className="transferencia">
-              <div className="transfCard">
-                <div className="transfInfo">
-                  <p><strong>Transferência:</strong> {t.nome_transacao}</p>
-                  <p><strong>Valor:</strong> R$ {t.valor_transacao}</p>
-                  <p><strong>Categoria:</strong> {t.categoria_transacao}</p>
-                  <p><strong>Data:</strong> {t.data_transacao}</p>
-                  <p><strong>Método:</strong> {t.metodo_transacao}</p>
+        <div className="dashboard">
+          <div className="transferencias">
+            {transferencias.map((t) => (
+              <div key={t.id_transacao} className="transferencia">
+                <div className="transfCard">
+                  <div className="transfInfo">
+                    <p><strong>Transferência:</strong> {t.nome_transacao}</p>
+                    <p><strong>Valor:</strong> R$ {t.valor_transacao}</p>
+                    <p><strong>Categoria:</strong> {t.categoria_transacao}</p>
+                    <p><strong>Data:</strong> {t.data_transacao}</p>
+                    <p><strong>Método:</strong> {t.metodo_transacao}</p>
+                  </div>
+                  <div className="buttonContainer">
+                    <button onClick={() => handleEdit(t)}>✏️ Editar</button>
+                    <button onClick={() => handleDelete(t.id_transacao)}>❌ Excluir</button>
+                  </div>
                 </div>
-                <div className="buttonContainer">
-                  <button onClick={() => handleEdit(t)}>✏️ Editar</button>
-                  <button onClick={() => handleDelete(t.id_transacao)}>❌ Excluir</button>
-                </div>
+          
               </div>
-        
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="grafico">
+           <Grafico/>
+          </div>
         </div>
       </div>
     );

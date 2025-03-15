@@ -1,6 +1,45 @@
 .container {
-    padding: 20px 20px;
+    padding: 20px 20px; 
+}
+
+.formulario {
+    display: flex;
+    width: 50%;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form button {
+    margin-bottom: 6px;
+}
+
+input {
+    margin-left: 5px;
+    border-radius: 5px;
+    padding: 7px
+}
+
+select {
+    margin-left: 5px;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.formContainer {
+    padding: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
     
+   
+}
+
+.formContainer button {
+    margin-left: 05px;
 }
 
 .transferencia {
@@ -13,7 +52,7 @@
     margin-top: 20px;
     gap: 150px;
     background-color: rgb(242, 239, 239);
-    width: 50%;
+    width: 100%;
     padding: 10px 20px;
     align-items: center;
 }
@@ -26,5 +65,9 @@
 }
 
 .buttonContainer button {
-    width: 80%;
+    width: 100%;
+}
+
+.dashboard {
+    display: flex;
 }

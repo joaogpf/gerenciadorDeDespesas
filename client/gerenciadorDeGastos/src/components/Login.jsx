@@ -41,7 +41,7 @@ const Login = () => {
                 </div>
                 
             </div>
-            <div className="formContainer">
+            <div className="formContainerLogin">
                 <div className="content">
                     <form className="loginForm" onSubmit={handleLogin}>
                             <label htmlFor="">E-mail</label>

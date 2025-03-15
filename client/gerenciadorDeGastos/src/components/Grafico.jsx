@@ -33,14 +33,12 @@ const Grafico = () => {
 
     React.useEffect(() => {
       carregarDados()
-      console.log("ijnadspia")
     }, [dataApi])
 
     React.useEffect(() => {
       if(chartRef.current) {
         chartRef.current.data.datasets[0].data = dataApi
         chartRef.current.update()
-        console.log("oi")
       }
     }, [dataApi])
     
