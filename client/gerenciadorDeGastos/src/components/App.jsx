@@ -4,17 +4,21 @@ import PageRegistro from "../pages/PageRegistro"
 import RotaProtegida from "./RotaProtegida";
 import PageLogin from "../pages/PageLogin";
 import Header from "./Header";
+import HeaderDashboard from "./HeaderDashboard";
 
 const App = () => {
     return (   
         <BrowserRouter>
             <Routes>
-                <Route element={ <Header/> }>
+                <Route element={<HeaderDashboard/>}>
                     <Route path="/dashboard" element={
                         <RotaProtegida>
                             <Dashboard/>
                         </RotaProtegida>
                     }/>
+                </Route>
+                <Route element={ <Header/> }>
+                    
             
             
                     <Route path="/" element={
