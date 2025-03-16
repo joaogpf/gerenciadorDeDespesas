@@ -3,7 +3,12 @@ import { useState, useEffect } from 'react'
 import "./styles/Dashboard.css"
 import Grafico from "./Grafico"
 import axios from "axios";
-
+import AttachMoney from '@mui/icons-material/AttachMoney' //valor
+import Today from '@mui/icons-material/Today' //data
+import ReceiptLong from '@mui/icons-material/ReceiptLong' //metodo
+import ShoppingBag from '@mui/icons-material/ShoppingBag' //nome
+import Category from '@mui/icons-material/Category' //categoria
+import ArrowRight from '@mui/icons-material/ArrowRight' //botao
 
 const Dashboard = () => {
 
@@ -67,6 +72,7 @@ const Dashboard = () => {
                 onChange={(e) => setFormData({ ...formData, nome_transacao: e.target.value })} 
                 required 
               />
+          
             <input 
               type="number" 
               placeholder="Valor" 
@@ -76,7 +82,7 @@ const Dashboard = () => {
               />
             <select value={formData.categoria_transacao} placeholder="categoria" 
             onChange={(e) => setFormData({ ...formData, categoria_transacao: e.target.value })} required>
-                <option value="">Selecione...</option>
+                <option value="">Selecione uma Categoria...</option>
                 <option value="Lazer">Lazer</option>
                 <option value="Investimento">Investimento</option>
                 <option value="Despesa Essencial">Despesas Essenciais</option>
@@ -91,7 +97,7 @@ const Dashboard = () => {
               />
             <select value={formData.metodo_transacao} placeholder="Metodo" 
             onChange={(e) => setFormData({ ...formData, metodo_transacao: e.target.value })} required>
-                <option value="">Selecione...</option>
+                <option value="">Selecione um Método...</option>
                 <option value="Crédito">Crédito</option>
                 <option value="Débito">Débito</option>
                 <option value="Pix">Pix</option>
@@ -109,11 +115,11 @@ const Dashboard = () => {
               <div key={t.id_transacao} className="transferencia">
                 <div className="transfCard">
                   <div className="transfInfo">
-                    <p><strong>Transferência:</strong> {t.nome_transacao}</p>
-                    <p><strong>Valor:</strong> R$ {t.valor_transacao}</p>
-                    <p><strong>Categoria:</strong> {t.categoria_transacao}</p>
-                    <p><strong>Data:</strong> {t.data_transacao}</p>
-                    <p><strong>Método:</strong> {t.metodo_transacao}</p>
+                    <p><ShoppingBag/><strong>Transferência:</strong> {t.nome_transacao}</p>
+                    <p><AttachMoney/><strong>Valor:</strong>  R$ {t.valor_transacao}</p>
+                    <p><Category/><strong>Categoria:</strong>  {t.categoria_transacao}</p>
+                    <p><Today/><strong>Data:</strong>  {t.data_transacao}</p>
+                    <p><ReceiptLong/><strong>Método:</strong>  {t.metodo_transacao}</p>
                   </div>
                   <div className="buttonContainer">
                     <button onClick={() => handleEdit(t)}>✏️ Editar</button>

@@ -7,6 +7,16 @@
     width: 50%;
 }
 
+.transfInfo p {
+    display: flex;
+    align-items: center;
+    margin-top: 10px
+}
+
+.transfInfo strong {
+    margin-left: 5px;
+}
+
 form {
     display: flex;
     align-items: center;
@@ -71,3 +81,4 @@ select {
 .dashboard {
     display: flex;
 }
+
