@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import '../components/styles/login.css'
 import AcessarRegistro from './AcessarRegistro'
 import axios from 'axios'
+import { ToastContainer, toast } from "react-toastify"
 
 
 const Login = () => {
@@ -25,6 +26,7 @@ const Login = () => {
         }
 
         catch(error){
+            toast.error("Usuário ou senha incorretos")
             setError("Erro ao fazer login")
             console.error(error)
         }
@@ -33,7 +35,9 @@ const Login = () => {
     }
     
     return (
+
         <div className="pageContainer">
+            <ToastContainer/>
             <div className="landingContainer">
                 <div className="title">
                     <h1>Aqui você economiza com inteligência.</h1>
@@ -48,9 +52,8 @@ const Login = () => {
                             <input type="email" value={email} placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} required/>
                             <label htmlFor="">Senha</label>
                             <input type="password" value={senha} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
-                            {error && <p>error</p>}
-                            <button type="submit">Entrar</button>
-                        
+                            <button className="logar" type="submit">Entrar</button>
+                          
                     
                     </form>
                     <AcessarRegistro/>

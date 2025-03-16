@@ -3,6 +3,8 @@ import { React } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../components/styles/register.css'
+import { ToastContainer, toast } from "react-toastify"
+
 
 
 const Register = () => {
@@ -26,7 +28,7 @@ const Register = () => {
         }
 
         catch(error){
-            setError("Erro ao fazer login")
+            toast.error("Erro ao criar usuário")
             console.error(error)
         }
       
@@ -35,6 +37,7 @@ const Register = () => {
     
     return (
         <div className="formRegisterContainer">
+            <ToastContainer/>
              <form onSubmit={handleRegister}>
 
                 <div className="inputContainer">

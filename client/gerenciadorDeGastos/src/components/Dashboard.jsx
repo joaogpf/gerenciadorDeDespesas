@@ -9,7 +9,7 @@ import ReceiptLong from '@mui/icons-material/ReceiptLong' //metodo
 import ShoppingBag from '@mui/icons-material/ShoppingBag' //nome
 import Category from '@mui/icons-material/Category' //categoria
 import ArrowRight from '@mui/icons-material/ArrowRight' //botao
-import { toast } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 
 const Dashboard = () => {
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
     const API_URL = "http://localhost:3000/transacao/"
 
     useEffect(() => {
- 
+      toast.success("sucesso")
       axios.get(API_URL + formData.usuario)
         .then(response => setTransferencias(response.data))
         .catch(error => console.error("Erro ao buscar transferências:", error));
@@ -41,6 +41,7 @@ const Dashboard = () => {
         setFormData({ id: null, nome_transacao: "", valor_transacao: "", categoria_transacao: "",
             data_transacao: "", metodo_transacao: "", usuario: localStorage.getItem('token') });
         setEditando(false);
+        toast.success("Transferência editada")
       } catch (error) {
         console.error("Erro ao salvar transferência:", error);
       }
@@ -51,6 +52,7 @@ const Dashboard = () => {
       try {
         await axios.delete(`${API_URL}/${id_transacao}`);
         setTransferencias(transferencias.filter(t => t.id_transacao !== id_transacao));
+        toast.success("Transferência Apagada")
       } catch (error) {
         console.error("Erro ao excluir transferência:", error);
       }
@@ -59,6 +61,7 @@ const Dashboard = () => {
 
     const handleEdit = (transferencia) => {
       setFormData(transferencia);
+   
       setEditando(true);
     };
   
@@ -111,6 +114,7 @@ const Dashboard = () => {
         </div>
   
         <h2>Lista de Transferências</h2>
+        <ToastContainer/>
         <div className="dashboard">
           <div className="transferencias">
             {transferencias.map((t) => (
