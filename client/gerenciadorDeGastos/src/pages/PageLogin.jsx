@@ -6,8 +6,7 @@ const PageLogin = () => {
     localStorage.setItem('token', null)
     return (
         <div>
-             <Login/>
-           
+             <Login/>        
         </div>
        
     )

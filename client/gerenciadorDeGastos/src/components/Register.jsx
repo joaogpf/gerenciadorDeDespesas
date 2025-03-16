@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { React } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const Register = () => {
@@ -9,6 +10,8 @@ const Register = () => {
     const [senha, setSenha] = useState('')
     const [error, setError] = useState('')
 
+    const navigate = useNavigate()
+
     const handleRegister = async (e) => {
         e.preventDefault()
         try{
@@ -16,12 +19,17 @@ const Register = () => {
                 email,
                 senha
         })
+
+        localStorage.setItem('token', response.data.token)
+        navigate('/dashboard')
         }
 
         catch(error){
             setError("Erro ao fazer login")
             console.error(error)
         }
+      
+       
     }
     
     return (

@@ -44,8 +44,10 @@ const createUsuario = async (req, res) => {
     try {
           
         const newUsuario = await UsuarioModel.Usuario.create({ email, senha })
-        return res.status(201).json(newUsuario)
-        console.log("Usuário cadastrado com sucesso!")
+        return res.status(201).json({
+            message: "usuário logado com sucesso",
+            token: newUsuario.toJSON().id_usuario
+        })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
