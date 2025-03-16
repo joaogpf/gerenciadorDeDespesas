@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import '../components/styles/header.css'
 
 
-const HeaderDashboard = () => {
+const HeaderRegister = () => {
 
     const navigate = useNavigate()
-    const logOut = () => {
+
+    const backHomePage = () => {
         navigate('/')
     }
  
@@ -16,7 +17,7 @@ const HeaderDashboard = () => {
             <>
                 <header>
                     <h1>Control+</h1>
-                    <button onClick={logOut}>Sair</button>
+                    <button onClick={backHomePage}>Voltar</button>
                    
                     
                 </header>
@@ -29,4 +30,4 @@ const HeaderDashboard = () => {
     
 }
 
-export default HeaderDashboard
+export default HeaderRegister

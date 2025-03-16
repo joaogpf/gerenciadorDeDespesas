@@ -5,6 +5,7 @@ import RotaProtegida from "./RotaProtegida";
 import PageLogin from "../pages/PageLogin";
 import Header from "./Header";
 import HeaderDashboard from "./HeaderDashboard";
+import HeaderRegister from "./HeaderRegister";
 
 const App = () => {
     return (   
@@ -26,14 +27,16 @@ const App = () => {
                             <PageLogin/>
 
                     }/>
-            
-            
+                </Route>
+                
+                <Route element={<HeaderRegister/>}>
                     <Route path="/registro" element={
 
                             <PageRegistro/>
                         
                     }/>
                 </Route>
+                
             </Routes>
             
         </BrowserRouter>
