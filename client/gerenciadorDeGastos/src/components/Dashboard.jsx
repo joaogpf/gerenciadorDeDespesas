@@ -9,6 +9,7 @@ import ReceiptLong from '@mui/icons-material/ReceiptLong' //metodo
 import ShoppingBag from '@mui/icons-material/ShoppingBag' //nome
 import Category from '@mui/icons-material/Category' //categoria
 import ArrowRight from '@mui/icons-material/ArrowRight' //botao
+import { toast } from "react-toastify"
 
 const Dashboard = () => {
 
@@ -20,6 +21,7 @@ const Dashboard = () => {
     const API_URL = "http://localhost:3000/transacao/"
 
     useEffect(() => {
+ 
       axios.get(API_URL + formData.usuario)
         .then(response => setTransferencias(response.data))
         .catch(error => console.error("Erro ao buscar transferências:", error));
@@ -44,7 +46,7 @@ const Dashboard = () => {
       }
     };
   
-    // 🚀 Excluir transferência
+
     const handleDelete = async (id_transacao) => {
       try {
         await axios.delete(`${API_URL}/${id_transacao}`);
@@ -54,7 +56,7 @@ const Dashboard = () => {
       }
     };
   
-    // 🚀 Preencher formulário para edição
+
     const handleEdit = (transferencia) => {
       setFormData(transferencia);
       setEditando(true);

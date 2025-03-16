@@ -5,3 +5,25 @@ header {
     justify-content: center;
     padding: 20px 5px
 }
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.logout {
+    width: 70%;
+    
+}
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    
+}
+
+.register {
+ display: block;
+}

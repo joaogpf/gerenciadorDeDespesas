@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { React } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import '../components/styles/register.css'
 
 
 const Register = () => {
@@ -33,16 +34,21 @@ const Register = () => {
     }
     
     return (
-        <form onSubmit={handleRegister}>
+        <div className="formRegisterContainer">
+             <form onSubmit={handleRegister}>
 
-            <div>
-                <input type="email" value={email} placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} required/>
-                <input type="password" value={senha} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
-                {error && <p>error</p>}
-                <button type="submit">Cadastrar</button>
-            </div>
+                <div className="inputContainer">
+                    <label>E-mail</label>
+                    <input type="email" value={email} placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} required/>
+                    <label>Senha</label>
+                    <input type="password" value={senha} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
+                    {error && <p>error</p>}
+                    <button type="submit">Cadastrar</button>
+                </div>
 
-        </form>
+            </form>
+        </div>
+       
     )  
 }
 

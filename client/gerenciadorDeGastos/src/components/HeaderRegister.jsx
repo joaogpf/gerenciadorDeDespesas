@@ -16,9 +16,12 @@ const HeaderRegister = () => {
         return (
             <>
                 <header>
-                    <h1>Control+</h1>
-                    <button onClick={backHomePage}>Voltar</button>
+                    <div className="headerContainer">
+                        <h1>Control+</h1>
+                        <button className="logout" onClick={backHomePage}>Voltar</button>
                    
+                    </div>
+                    
                     
                 </header>
                 <main>

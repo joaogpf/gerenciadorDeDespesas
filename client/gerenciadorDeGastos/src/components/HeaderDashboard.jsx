@@ -15,8 +15,11 @@ const HeaderDashboard = () => {
         return (
             <>
                 <header>
-                    <h1>Control+</h1>
-                    <button onClick={logOut}>Sair</button>
+                    <div className="headerContainer">
+                        <h1>Control+</h1>
+                        <button className="logout" onClick={logOut}>Sair</button>
+                    </div>
+                    
                    
                     
                 </header>
