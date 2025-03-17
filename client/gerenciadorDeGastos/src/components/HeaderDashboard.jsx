@@ -17,7 +17,7 @@ const HeaderDashboard = () => {
                 <header>
                     <div className="headerContainer">
                         <h1>Control+</h1>
-                        <button className="logout" onClick={logOut}>Sair</button>
+                        <button className="logout"onClick={logOut}>Sair</button>
                     </div>
                     
                    

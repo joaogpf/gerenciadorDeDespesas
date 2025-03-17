@@ -21,7 +21,7 @@ const Dashboard = () => {
     const API_URL = "http://localhost:3000/transacao/"
 
     useEffect(() => {
-      toast.success("sucesso")
+      toast.success("Bem-vindo ao seu relatório")
       axios.get(API_URL + formData.usuario)
         .then(response => setTransferencias(response.data))
         .catch(error => console.error("Erro ao buscar transferências:", error));
@@ -33,15 +33,17 @@ const Dashboard = () => {
       try {
         if (editando) {
           await axios.put(`${API_URL}/${formData.id_transacao}`, formData);
+          toast.success("Transferência editada")
         } else {
           await axios.post(API_URL, formData);
+          toast.success("Transferência adicionada")
         }
         
         setTransferencias(await (await axios.get(API_URL + formData.usuario)).data);
         setFormData({ id: null, nome_transacao: "", valor_transacao: "", categoria_transacao: "",
             data_transacao: "", metodo_transacao: "", usuario: localStorage.getItem('token') });
         setEditando(false);
-        toast.success("Transferência editada")
+       
       } catch (error) {
         console.error("Erro ao salvar transferência:", error);
       }
@@ -113,7 +115,7 @@ const Dashboard = () => {
           </form>
         </div>
   
-        <h2>Lista de Transferências</h2>
+        <h2>Suas Transferências</h2>
         <ToastContainer/>
         <div className="dashboard">
           <div className="transferencias">

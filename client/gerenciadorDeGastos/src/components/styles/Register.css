@@ -1,12 +1,36 @@
 .formRegisterContainer {
-    margin-top: 20px;
+    display: flex;
 }
 
 .inputContainer {
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.FormRegister {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.imageContainerRegister {
+    flex: 2;
+    height: 100vh;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    background-image: url("../../assets/images/bg-reg.jpg");
+    background-size: cover;
+   
+}
+
+.registerImageTitle {
+    font-size: 50px;
+    color: white;
+    
 }
 
 input {

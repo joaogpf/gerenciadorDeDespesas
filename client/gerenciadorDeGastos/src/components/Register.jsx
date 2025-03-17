@@ -37,19 +37,25 @@ const Register = () => {
     
     return (
         <div className="formRegisterContainer">
+
             <ToastContainer/>
-             <form onSubmit={handleRegister}>
+            
+                <form className="FormRegister" onSubmit={handleRegister}>
 
-                <div className="inputContainer">
-                    <label>E-mail</label>
-                    <input type="email" value={email} placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} required/>
-                    <label>Senha</label>
-                    <input type="password" value={senha} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
-                    {error && <p>error</p>}
-                    <button type="submit">Cadastrar</button>
+                    <div className="inputContainer">
+                        <label>E-mail</label>
+                        <input type="email" value={email} placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} required/>
+                        <label>Senha</label>
+                        <input type="password" value={senha} placeholder="Senha" onChange={(e) => setSenha(e.target.value)} required/>
+                        {error && <p>error</p>}
+                        <button type="submit">Cadastrar</button>
+                    </div>
+                    
+
+                </form>
+                <div className="imageContainerRegister">
+                        <h1 className="registerImageTitle">Crie sua Conta</h1>
                 </div>
-
-            </form>
         </div>
        
     )  

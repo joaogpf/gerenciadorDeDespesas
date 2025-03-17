@@ -55,6 +55,7 @@ const getTransacoesById = async (req, res) => {
         const { usuario } = req.params
         console.log(req.params)
         const transacoesUsuario = await TransacoesModel.Transacoes.findAll({
+            order: [["id_transacao", "DESC"]], // Ordena pelo ID do maior para o menor
             where: {
                 usuario: usuario
             }})

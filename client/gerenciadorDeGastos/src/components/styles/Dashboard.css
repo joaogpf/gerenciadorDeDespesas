@@ -2,6 +2,7 @@
     padding: 20px 20px; 
 }
 
+
 .formulario {
     display: flex;
     width: 50%;
@@ -53,8 +54,13 @@ select {
 }
 
 .transferencia {
-    display: grid;
-    grid-template-columns: 1fr 1fr 
+   
+    width: 100%;
+}
+
+.transferencias {
+    overflow: scroll;
+    
 }
 
 .transfCard {
@@ -79,6 +85,8 @@ select {
 }
 
 .dashboard {
+    height: 69vh;
     display: flex;
+  
+    justify-content: space-between;
 }
-
