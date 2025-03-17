@@ -12,7 +12,7 @@ const Categorias = () => {
 
         try {
             const response = await axios.get(`http://localhost3000/transacao/${categoria}`)
-            setCategoria(response)
+            setTransacoes(response)
         } catch (error) {
             console.error("Erro ao filtrar categorias")
 
