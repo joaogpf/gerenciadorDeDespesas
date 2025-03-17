@@ -66,10 +66,27 @@ const getTransacoesById = async (req, res) => {
     }
 }
 
+const filtrarTransacoes = async (req, res) => {
+    
+    try {
+        const { categoria } = req.params
+        const transacoesCategoria = await TransacoesModel.Transacoes.findAll({
+            order: [["id_transacao", "DESC"]],
+            where: {
+                categoria_transacao: categoria
+            }
+        })
+        return res.status(201).json(transacoesCategoria)
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 module.exports = {
     getTransacoes,
     createTransacao,
     getTransacoesById,
     deleteTransacao,
-    editTransacao
+    editTransacao,
+    filtrarTransacoes
 }
