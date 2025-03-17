@@ -60,11 +60,14 @@ select {
 
 .transferencias {
     overflow: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px
     
 }
 
 .transfCard {
-    display: flex;
+    
     margin-top: 20px;
     gap: 150px;
     background-color: rgb(242, 239, 239);
@@ -86,7 +89,7 @@ select {
 
 .dashboard {
     height: 69vh;
-    display: flex;
-  
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
+
