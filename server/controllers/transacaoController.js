@@ -3,6 +3,7 @@ const TransacoesModel = require("../models/despesa");
 const getTransacoes = async (req, res) => {
     try {
         const transacoes = await TransacoesModel.Transacoes.findAll()
+        
         return res.status(200).json(transacoes)
     } catch (error) {
         return res.status(500).json({ error: error.message })
@@ -66,21 +67,25 @@ const getTransacoesById = async (req, res) => {
     }
 }
 
-const filtrarTransacoes = async (req, res) => {
+/*const filtrarTransacoes = async (req, res) => {
     
     try {
-        const { categoria } = req.params
+        const { categoria_transacao } = req.query
+        if (!categoria_transacao) {
+            return res.status(400).json({ error: "A categoria é obrigatória" });
+        }
+
         const transacoesCategoria = await TransacoesModel.Transacoes.findAll({
             order: [["id_transacao", "DESC"]],
-            where: {
-                categoria_transacao: categoria
-            }
+            where: 
+                 {categoria_transacao}
+            
         })
-        return res.status(201).json(transacoesCategoria)
+        return res.status(200).json(transacoesCategoria)
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
-}
+}*/
 
 module.exports = {
     getTransacoes,

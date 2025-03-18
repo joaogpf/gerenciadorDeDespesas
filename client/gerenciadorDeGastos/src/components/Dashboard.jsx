@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [formData, setFormData] = useState({ id_transacao: null, nome_transacao: "", valor_transacao: "", categoria_transacao: "",
          data_transacao: "", metodo_transacao: "", usuario: localStorage.getItem('token') });
     const [editando, setEditando] = useState(false);
+    //const [categoria, setCategoria] = useState('')
 
     const API_URL = "http://localhost:3000/transacao/"
 
@@ -34,6 +35,7 @@ const Dashboard = () => {
         if (editando) {
           await axios.put(`${API_URL}/${formData.id_transacao}`, formData);
           toast.success("Transferência editada")
+          
         } else {
           await axios.post(API_URL, formData);
           toast.success("Transferência adicionada")
@@ -66,6 +68,23 @@ const Dashboard = () => {
    
       setEditando(true);
     };
+
+    const filtrarCategorias = async () => {
+
+      try {
+          const response = await axios.get(`http://localhost:3000/transacao?categoria_transacao=${categoria}`)
+          
+          setTransferencias(response.data)
+          console.log(response.data)
+      } catch (error) {
+          console.error("Erro ao filtrar categorias")
+
+      }
+    }
+
+     useEffect(() => {
+            filtrarCategorias()
+        }, [categoria])
   
     return (
       <div className="container">
@@ -114,7 +133,7 @@ const Dashboard = () => {
             <button type="submit">{editando ? "Atualizar" : "Cadastrar"}</button>
           </form>
         </div>
-  
+
         <h2>Suas Transferências</h2>
         <ToastContainer/>
         <div className="dashboard">
@@ -133,6 +152,7 @@ const Dashboard = () => {
                     <button onClick={() => handleEdit(t)}>✏️ Editar</button>
                     <button onClick={() => handleDelete(t.id_transacao)}>❌ Excluir</button>
                   </div>
+                 
                 </div>
           
               </div>
@@ -141,6 +161,20 @@ const Dashboard = () => {
           <div className="grafico">
            <Grafico/>
           </div>
+          
+          {/*
+            <div>   
+                    <select placeholder="Filtrar Categoria" 
+                      onChange={(e) => {setCategoria(e.target.value)}}>
+                      <option value="">Filtrar por Categoria...</option>
+                      <option value="Lazer">Lazer</option>
+                      <option value="Investimento">Investimento</option>
+                      <option value="Despesa Essencial">Despesas Essenciais</option>
+                      <option value="Gasto Pessoal">Gastos Pessoais</option> 
+                    </select>
+          </div>
+          */}
+
         </div>
       </div>
     );
