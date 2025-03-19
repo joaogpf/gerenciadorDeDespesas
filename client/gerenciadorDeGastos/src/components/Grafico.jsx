@@ -86,12 +86,37 @@ const Grafico = () => {
         }
     ];
 
+    const optionsBar = {
+      responsive: true,
+      plugins: {
+        legend: { display: true },
+        title: { display: true, text: "Transações x Categoria" }, // Título do gráfico
+      },
+      scales: {
+        y: {
+          title: {
+            display: true,
+            text: "Quantidade", // ✅ Label do eixo Y
+          },
+          beginAtZero: true, // Começar do zero
+        },
+      },
+    };
+
+    const optionsPie = {
+      responsive: true,
+      plugins: {
+        legend: { display: true },
+        title: { display: true, text: "Valor Gasto x Categoria" }, // Título do gráfico
+      },
+    };
+
     return (
         <>
             {dados.map((grafico) => (
                 <div key={grafico.id} style={{ width: "400px", marginBottom: "20px" }}>
-                    {grafico.type === "bar" && <Bar data={grafico.data} />}
-                    {grafico.type === "pie" && <Pie data={grafico.data} />}
+                    {grafico.type === "bar" && <Bar data={grafico.data} options={optionsBar}/>}
+                    {grafico.type === "pie" && <Pie data={grafico.data} options={optionsPie}/>}
                 </div>
             ))}
         </>
