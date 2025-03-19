@@ -11,6 +11,7 @@ import Category from '@mui/icons-material/Category' //categoria
 import ArrowRight from '@mui/icons-material/ArrowRight' //botao
 import { ToastContainer, toast } from "react-toastify"
 
+
 const Dashboard = () => {
 
     const [transferencias, setTransferencias] = useState([]);
@@ -68,7 +69,7 @@ const Dashboard = () => {
    
       setEditando(true);
     };
-
+ /*
     const filtrarCategorias = async () => {
 
       try {
@@ -85,7 +86,7 @@ const Dashboard = () => {
      useEffect(() => {
             filtrarCategorias()
         }, [categoria])
-  
+  */
     return (
       <div className="container">
         <h2>{editando ? "Editar Transferência" : "Cadastrar Transferência"}</h2>
@@ -161,6 +162,7 @@ const Dashboard = () => {
           <div className="grafico">
            <Grafico/>
           </div>
+         
           
           {/*
             <div>   

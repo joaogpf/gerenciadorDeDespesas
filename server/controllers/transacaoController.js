@@ -93,5 +93,5 @@ module.exports = {
     getTransacoesById,
     deleteTransacao,
     editTransacao,
-    filtrarTransacoes
+   
 }
