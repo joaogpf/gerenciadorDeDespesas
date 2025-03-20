@@ -1,4 +1,4 @@
-cd
+
 # Control+
 
 Aplicação Full Stack para controle de financeiro desenvolvido com ReactJS, NodeJS e banco de dados MySQL.
