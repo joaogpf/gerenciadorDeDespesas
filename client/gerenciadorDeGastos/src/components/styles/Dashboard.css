@@ -61,7 +61,7 @@ select {
 .transferencias {
     overflow: scroll;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 5px
     
 }
@@ -90,6 +90,7 @@ select {
 .dashboard {
     height: 69vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
 }
 

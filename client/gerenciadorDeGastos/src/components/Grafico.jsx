@@ -72,9 +72,9 @@ const Grafico = () => {
                     {
                         label: "Quantidade de Transações",
                         data: [
+                            somarQuantidadeTransacao(dataApi).n_pessoal,
                             somarQuantidadeTransacao(dataApi).n_lazer,
                             somarQuantidadeTransacao(dataApi).n_investimento,
-                            somarQuantidadeTransacao(dataApi).n_pessoal,
                             somarQuantidadeTransacao(dataApi).n_essencial
                         ],
                         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#9966FF"],
