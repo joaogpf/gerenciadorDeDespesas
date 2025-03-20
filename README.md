@@ -50,5 +50,6 @@ Em seguida execute o servidor:
 
 ## Screenshots
 
-![Demonstração do Projeto](demo.png)
-
+![Demonstração do Login](demo.png)
+![Demonstração do Dashboard](demo2.png)
+![Demonstração do Cadastro](demo3.png)
